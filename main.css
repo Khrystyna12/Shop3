@@ -1,0 +1,310 @@
+.bl-background {
+    background: #cdcbcb;
+    padding: 2%;
+    height: 600px;
+}
+
+.bl-list {
+    background: white;
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 59%;
+    border-radius: 5px;
+}
+
+.bl-bought {
+    background: white;
+    display: inline-block;
+    margin-top: 5%;
+    margin-right: 5%;
+    float: right;
+    width: 30%;
+    border-radius: 5px;
+}
+
+.bl-row {
+    position: relative;
+    display: block;
+    padding: 10px;
+    border: 1px solid #cdcbcb;
+    height: 41px;
+    vertical-align: middle;
+}
+
+.bl-row2 {
+    position: relative;
+    display: block;
+    padding: 10px;
+    border: 1px solid #cdcbcb;
+    vertical-align: middle;
+}
+
+.bl-line {
+    position: absolute;
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #cdcbcb;
+    border-radius: 5px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.bl-product {
+    display: inline-block;
+    width: 45%;
+    text-decoration: none;
+    border: none;
+}
+
+.bl-product2 {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 5px;
+    height: 20px;
+    width: 80px;
+    font-size: 10px;
+}
+
+.bl-product2-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #cdcbcb;
+    padding: 10px;
+    border-radius: 5px;
+    height: 20px;
+    width: 80%;
+    font-size: 10px;
+}
+
+.bl-number {
+    position: absolute;
+    top: 20%;
+    right: 1px;
+    background: #f08111;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    width: 16px;
+    height: 6px;
+}
+
+.bl-badge {
+    position: fixed;
+    left: 20px;
+    bottom: -140px;
+    background: blueviolet;
+    color: white;
+    width: 170px;
+    height: 180px;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-top: 20px;
+    transition:	all	1s	ease;
+    }
+
+.bl-badge2 {
+    visibility: hidden;
+}
+
+@media print {
+    .bl-badge{
+        visibility: hidden;
+    }
+    .bl-badge2{
+        visibility: visible;
+        position: fixed;
+        left: 20px;
+        bottom: -10px;
+        background: white;
+        color: blueviolet;
+        border: 5px solid;
+        border-color: blueviolet;
+        width: 170px;
+        height: 180px;
+        border-radius: 10px;
+        padding-left: 30px;
+        padding-top: 20px;
+    }
+}
+
+.bl-badge:hover {
+    background: blue;
+    bottom: -10px;
+}
+
+/*Кнопки*/
+.bl-minus {
+    background: #f01019;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.bl-minus::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: white;
+    background-color: blueviolet;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0; 
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	transition: all 0.4s ease-in-out; 
+}
+		
+.bl-minus:hover::after {
+	opacity: 1; 
+	visibility: visible;
+}
+
+.bl-label {
+    background: #cdcbcb;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+}
+.bl-plus {
+    background: #04a613;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.bl-plus::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: white;
+    background-color: blueviolet;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0; 
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	transition: all 0.4s ease-in-out; 
+}
+		
+.bl-plus:hover::after {
+	opacity: 1; 
+	visibility: visible;
+}
+
+.bl-add {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    background: #0615bf;
+    color: white;
+    width: 20%;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.bl-add::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: white;
+    background-color: blueviolet;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0; 
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	transition: all 0.4s ease-in-out; 
+}
+		
+.bl-add:hover::after {
+	opacity: 1; 
+	visibility: visible;
+}
+
+.bl-buttons {
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+
+@media	(max-width:	950px)	{
+    .bl-product {
+        width: 15%;
+    }
+    
+    .bl-buttons {
+        width: 35%;
+    }
+}
+
+@media	(max-width:	500px)	{
+    .bl-list {
+        width: 100%;
+        margin: 1%;
+    }
+    .bl-bought {
+        width: 100%;
+        margin: 1%;
+        float: none;
+    }
+}
+
+.bl-bought2 {
+    background: #cdcbcb;
+    border-radius: 5px;
+    float: left;
+    width: 70%;
+    height: 40px;
+}
+
+.bl-bought2::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: white;
+    background-color: blueviolet;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0; 
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	transition: all 0.4s ease-in-out; 
+}
+		
+.bl-bought2:hover::after {
+	opacity: 1; 
+	visibility: visible;
+}
+
+.bl-x {
+    background: #f01019;
+    color: white;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.bl-x::after {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	color: white;
+    background-color: blueviolet;
+	content: attr(data-tooltip);
+	margin-top: -24px;
+	opacity: 0; 
+	padding: 3px 7px;
+	position: absolute;
+	visibility: hidden;
+	transition: all 0.4s ease-in-out; 
+}
+		
+.bl-x:hover::after {
+	opacity: 1; 
+	visibility: visible;
+}

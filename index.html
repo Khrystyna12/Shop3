@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="uk">
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <script type='text/javascript' src='jquery-3.2.1.min.js'></script>
+</head>
+<body>
+<div class="bl-background">
+    <div class="bl-list">
+        <div class="bl-row">
+            <input class="bl-line" value="Назва товару">
+            <button class="bl-add" data-tooltip="Додати новий товар (Не додавайте порожній!)"><b>Додати</b></button>
+            </div>
+        <div class="bl-row">
+            <input class="bl-product" value="Помідори" id="Помідори">
+            <button class="bl-minus" data-tooltip="Відняти одиницю товару"><b>-</b></button>
+            <input class="bl-label" value="1" disabled>
+            <button class="bl-plus" data-tooltip="Додати одиницю товару"><b>+</b></button>
+            <div class="bl-buttons">
+                <button class="bl-bought2" data-tooltip="Куплено цей товар">Куплено</button>
+                <button class="bl-x" data-tooltip="Видалити товар"><b>x</b></button>
+            </div>
+            </div>
+        <div class="bl-row">
+            <input class="bl-product" value="Печиво" id="Печиво">
+            <button class="bl-minus" data-tooltip="Відняти одиницю товару"><b>-</b></button>
+            <input class="bl-label" value="1" disabled>
+            <button class="bl-plus" data-tooltip="Додати одиницю товару"><b>+</b></button>
+            <div class="bl-buttons">
+                <button class="bl-bought2" data-tooltip="Куплено цей товар">Куплено</button>
+                <button class="bl-x" data-tooltip="Видалити товар"><b>x</b></button>
+            </div>
+            </div>
+        <div class="bl-row">
+            <input class="bl-product" value="Сир" id="Сир">
+            <button class="bl-minus" data-tooltip="Відняти одиницю товару"><b>-</b></button>
+            <input class="bl-label" value="1" disabled>
+            <button class="bl-plus" data-tooltip="Додати одиницю товару"><b>+</b></button>
+            <div class="bl-buttons">
+                <button class="bl-bought2" data-tooltip="Куплено цей товар">Куплено</button>
+                <button class="bl-x" data-tooltip="Видалити товар"><b>x</b></button>
+            </div>
+            </div>
+    </div>
+    <div class="bl-bought">
+        <div class="bl-row"><b><font size = "5">Залишилося</font></b></div>
+        <div class="bl-row2">
+            <div class="bl-product2" id="Помідори">
+                <input class="bl-product2-2" value="Помідори" disabled>
+                <input class="bl-number" value="1" disabled></div>
+            <div class="bl-product2" id="Печиво">
+                <input class="bl-product2-2" value="Печиво" disabled>
+                <input class="bl-number" value="1" disabled></div>
+            <div class="bl-product2" id="Сир">
+                <input class="bl-product2-2" value="Сир" disabled>
+                <input class="bl-number" value="1" disabled></div>
+        </div>
+        <div class="bl-row"><b><font size = "5">Куплено</font></b></div>
+        <div class="bl-row2">
+        </div>
+    </div>
+    <div class="bl-badge"><b><font size = "6">Buy List</font><font size = "4">
+        Created by:
+        Христина Семенюк</font></b></div>
+    <div class="bl-badge2"><b><font size = "4">Created by
+        
+        Христина Семенюк</font></b></div>
+</div> 
+    <script>
+        $("body").on('change','.bl-product',function () {
+            var value=$(this).val();
+            var id=this.id;
+            var x=$(".bl-bought").children(".bl-row2").children("#"+id).children(".bl-product2-2").val(value);
+        });
+        $("body").on('click','.bl-plus',function () {
+            var value = $(this).parent();
+            var valu = $(value.children('.bl-label')).val();
+            var id = $(value.children(".bl-product")).attr("id");
+            $(value.children(".bl-label")).val(parseInt(valu) + 1);
+            $(".bl-bought").children(".bl-row2").children("#"+id).children(".bl-number").val(parseInt(valu) + 1);
+        });
+        $("body").on('click','.bl-minus',function () {
+            var value = $(this).parent();
+            var valu = $(value.children('.bl-label')).val();
+            var id = $(value.children(".bl-product")).attr("id");
+            if(parseInt(valu) > 1) {
+                $(value.children(".bl-label")).val(parseInt(valu) - 1);
+                $(".bl-bought").children(".bl-row2").children("#"+id).children(".bl-number").val(parseInt(valu) - 1);
+            }
+        });
+        $("body").on('click','.bl-x',function () {
+            var id = $(this).parent().parent().children(".bl-product").attr("id");
+            var value = $(this).parent().parent();
+            $(value).remove();
+            $($(".bl-bought").children(".bl-row2")[0]).children("#"+id).remove();
+            $($(".bl-bought").children(".bl-row2")[1]).children("#"+id).remove();
+        });
+        $("body").on('click','.bl-bought2',function () {
+            var valu = $(this).text();
+            var id = $(this).parent().parent().children(".bl-product").attr("id");
+            var val = $(this).parent().parent().children(".bl-product").val();
+            var number = $(this).parent().parent().children(".bl-label").val();
+            if(valu === "Куплено") {
+                var value = $(this).parent().parent();
+                $(value.children(".bl-minus")).hide();
+                $(value.children(".bl-plus")).hide();
+                $(value.children(".bl-buttons")).children(".bl-x").hide();
+                $(value.children(".bl-buttons")).children(".bl-bought2").attr("data-tooltip", "Не куплено цей товар");
+                $(value.children(".bl-buttons")).children(".bl-bought2").text("Не куплено");
+                $(value.children(".bl-product")).css("text-decoration", "line-through");
+                $($(".bl-bought").children(".bl-row2")[0]).children("#"+id).hide();
+                $($(".bl-bought").children(".bl-row2")[1]).append("<div class='bl-product2' id="+id+"> <input class='bl-product2-2' value="+val+" disabled> <input class='bl-number' value="+number+" disabled> </div>");
+            }
+            if(valu === "Не куплено") {
+                var value = $(this).parent().parent();
+                $(value.children(".bl-minus")).show();
+                $(value.children(".bl-plus")).show();
+                $(value.children(".bl-buttons")).children(".bl-x").show();
+                $(value.children(".bl-buttons")).children(".bl-bought2").attr("data-tooltip", "Куплено цей товар");
+                $(value.children(".bl-buttons")).children(".bl-bought2").text("Куплено");
+                $(value.children(".bl-product")).css("text-decoration", "none");
+                $($(".bl-bought").children(".bl-row2")[1]).children("#"+id).hide();
+                $($(".bl-bought").children(".bl-row2")[0]).append("<div class='bl-product2' id="+id+"> <input class='bl-product2-2' value="+val+" disabled> <input class='bl-number' value="+number+" disabled> </div>");
+            }
+        });
+        $('.bl-add').click(function(){
+            var value = $(".bl-line").val();
+            $(".bl-list").append("<div class='bl-row'><input class='bl-product' value="+value+" id="+value+"> <button class='bl-minus' data-tooltip='Відняти одиницю товару'><b>-</b></button> <input class='bl-label' value='1' disabled> <button class='bl-plus' data-tooltip='Додати одиницю товару'><b>+</b></button> <div class='bl-buttons'> <button class='bl-bought2' data-tooltip='Куплено цей товар'>Куплено</button> <button class='bl-x' data-tooltip='Видалити товар'><b>x</b></button></div></div>");
+            $($(".bl-bought").children(".bl-row2")[0]).append("<div class='bl-product2' id="+value+"> <input class='bl-product2-2' value="+value+" disabled> <input class='bl-number' value='1' disabled> </div>");
+            $(".bl-line").val("");
+        });
+        </script>
+</body>
+</html>
